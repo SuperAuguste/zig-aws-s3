@@ -1,0 +1,56 @@
+.{
+    .name = "aws-c-s3-zig",
+    .version = "0.0.1",
+    .paths = .{ "build.zig.zon", "build.zig", "src" },
+    .dependencies = .{
+        // linux-only dependencies
+        .@"aws/aws-lc" = .{
+            .url = "https://github.com/aws/aws-lc/archive/refs/tags/v1.16.0.tar.gz",
+            .hash = "12201f9087b8c955661c0b3869e69b3de58eb0c25fb2b0e227bbeda16923e1181104",
+        },
+        .@"aws/s2n-tls" = .{
+            .url = "https://github.com/aws/s2n-tls/archive/refs/tags/v1.3.54.tar.gz",
+            .hash = "12208bf7dfb6cdc3ec7f7625fa69219f1743141cfae1e1ead42ad8942e88dc20eaa8",
+        },
+
+        // remaining dependencies
+        .@"awslabs/aws-c-common" = .{
+            .url = "https://github.com/awslabs/aws-c-common/archive/refs/tags/v0.9.4.tar.gz",
+            .hash = "1220696f19f82a61105af896b6e128cf404bd013e79b9d7f0961fc42131898c98e68",
+        },
+        .@"awslabs/aws-checksums" = .{
+            .url = "https://github.com/awslabs/aws-checksums/archive/refs/tags/v0.1.17.tar.gz",
+            .hash = "12203a34c33eb7b5caf4087d99302ef1263f7fba90ca095c67c3df77f4be9b0b6e91",
+        },
+        .@"awslabs/aws-c-cal" = .{
+            .url = "https://github.com/awslabs/aws-c-cal/archive/refs/tags/v0.6.6.tar.gz",
+            .hash = "12207fd8659068592409887552b301c01fb026ae7c567b03c704a0a1c5148a9bff2c",
+        },
+        .@"awslabs/aws-c-io" = .{
+            .url = "https://github.com/awslabs/aws-c-io/archive/refs/tags/v0.13.35.tar.gz",
+            .hash = "12201ed094d5df8c5a850d5fce07d0396cf8b3b307c3634b693dd933b815196be8fd",
+        },
+        .@"awslabs/aws-c-compression" = .{
+            .url = "https://github.com/awslabs/aws-c-compression/archive/refs/tags/v0.2.17.tar.gz",
+            .hash = "1220db2199dba2436f0a7675671e8ed35f5f865457069ed11aac8544d3d623660aca",
+        },
+        .@"awslabs/aws-c-http" = .{
+            .url = "https://github.com/awslabs/aws-c-http/archive/refs/tags/v0.7.13.tar.gz",
+            .hash = "1220d91a70dd1af815e1bb1e174d7e6796164fd2111a079be9413c2be0827b20b1e6",
+        },
+        .@"awslabs/aws-c-sdkutils" = .{
+            .url = "https://github.com/awslabs/aws-c-sdkutils/archive/refs/tags/v0.1.12.tar.gz",
+            .hash = "12209fc3922f2a67ed424cfdf7cf18172ab5c2539a1dead0b36ba86787ecdff8b4ea",
+        },
+        .@"awslabs/aws-c-auth" = .{
+            .url = "https://github.com/awslabs/aws-c-auth/archive/refs/tags/v0.7.4.tar.gz",
+            .hash = "1220905f12d791ab6f1b7cca8cc509e13ca1095a95d3a8cc66303ee89f9a75e01bc0",
+        },
+
+        // main aws-c-s3 dependency
+        .@"awslabs/aws-c-s3" = .{
+            .url = "https://github.com/awslabs/aws-c-s3/archive/refs/tags/v0.3.18.tar.gz",
+            .hash = "1220e9b5cb6e6d99e02e02fdc91838a4f2c01d1902825214cd7b6414cd2e62796598",
+        },
+    },
+}
