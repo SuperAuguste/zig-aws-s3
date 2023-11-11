@@ -27,58 +27,58 @@ const SigningConfig = extern struct {
     config_type: c.enum_aws_signing_config_type = @import("std").mem.zeroes(c.enum_aws_signing_config_type),
     algorithm: c.enum_aws_signing_algorithm = @import("std").mem.zeroes(c.enum_aws_signing_algorithm),
     signature_type: c.enum_aws_signature_type = @import("std").mem.zeroes(c.enum_aws_signature_type),
-    region: c.struct_aws_byte_cursor = @import("std").mem.zeroes(c.struct_aws_byte_cursor),
-    service: c.struct_aws_byte_cursor = @import("std").mem.zeroes(c.struct_aws_byte_cursor),
-    date: c.struct_aws_date_time = @import("std").mem.zeroes(c.struct_aws_date_time),
+    region: c.aws_byte_cursor = @import("std").mem.zeroes(c.aws_byte_cursor),
+    service: c.aws_byte_cursor = @import("std").mem.zeroes(c.aws_byte_cursor),
+    date: c.aws_date_time = @import("std").mem.zeroes(c.aws_date_time),
     should_sign_header: ?*const c.aws_should_sign_header_fn = @import("std").mem.zeroes(?*const c.aws_should_sign_header_fn),
     should_sign_header_ud: ?*anyopaque = @import("std").mem.zeroes(?*anyopaque),
     flags: Flags = @import("std").mem.zeroes(Flags),
-    signed_body_value: c.struct_aws_byte_cursor = @import("std").mem.zeroes(c.struct_aws_byte_cursor),
+    signed_body_value: c.aws_byte_cursor = @import("std").mem.zeroes(c.aws_byte_cursor),
     signed_body_header: c.enum_aws_signed_body_header_type = @import("std").mem.zeroes(c.enum_aws_signed_body_header_type),
-    credentials: ?*const c.struct_aws_credentials = @import("std").mem.zeroes(?*const c.struct_aws_credentials),
-    credentials_provider: [*c]c.struct_aws_credentials_provider = @import("std").mem.zeroes([*c]c.struct_aws_credentials_provider),
+    credentials: ?*const c.aws_credentials = @import("std").mem.zeroes(?*const c.aws_credentials),
+    credentials_provider: [*c]c.aws_credentials_provider = @import("std").mem.zeroes([*c]c.aws_credentials_provider),
     expiration_in_seconds: u64 = @import("std").mem.zeroes(u64),
 };
 
 pub const ClientConfig = extern struct {
     max_active_connections_override: u32 = @import("std").mem.zeroes(u32),
-    region: c.struct_aws_byte_cursor = @import("std").mem.zeroes(c.struct_aws_byte_cursor),
-    client_bootstrap: [*c]c.struct_aws_client_bootstrap = @import("std").mem.zeroes([*c]c.struct_aws_client_bootstrap),
+    region: c.aws_byte_cursor = @import("std").mem.zeroes(c.aws_byte_cursor),
+    client_bootstrap: [*c]c.aws_client_bootstrap = @import("std").mem.zeroes([*c]c.aws_client_bootstrap),
     tls_mode: c.enum_aws_s3_meta_request_tls_mode = @import("std").mem.zeroes(c.enum_aws_s3_meta_request_tls_mode),
-    tls_connection_options: ?*c.struct_aws_tls_connection_options = @import("std").mem.zeroes(?*c.struct_aws_tls_connection_options),
+    tls_connection_options: ?*c.aws_tls_connection_options = @import("std").mem.zeroes(?*c.aws_tls_connection_options),
     signing_config: ?*SigningConfig = @import("std").mem.zeroes(?*SigningConfig),
     part_size: u64 = @import("std").mem.zeroes(u64),
     max_part_size: u64 = @import("std").mem.zeroes(u64),
     multipart_upload_threshold: u64 = @import("std").mem.zeroes(u64),
     throughput_target_gbps: f64 = @import("std").mem.zeroes(f64),
-    retry_strategy: [*c]c.struct_aws_retry_strategy = @import("std").mem.zeroes([*c]c.struct_aws_retry_strategy),
+    retry_strategy: [*c]c.aws_retry_strategy = @import("std").mem.zeroes([*c]c.aws_retry_strategy),
     compute_content_md5: c.enum_aws_s3_meta_request_compute_content_md5 = @import("std").mem.zeroes(c.enum_aws_s3_meta_request_compute_content_md5),
     shutdown_callback: ?*const c.aws_s3_client_shutdown_complete_callback_fn = @import("std").mem.zeroes(?*const c.aws_s3_client_shutdown_complete_callback_fn),
     shutdown_callback_user_data: ?*anyopaque = @import("std").mem.zeroes(?*anyopaque),
-    proxy_options: ?*c.struct_aws_http_proxy_options_11 = @import("std").mem.zeroes(?*c.struct_aws_http_proxy_options_11),
-    proxy_ev_settings: ?*c.struct_proxy_env_var_settings_12 = @import("std").mem.zeroes(?*c.struct_proxy_env_var_settings_12),
+    proxy_options: ?*anyopaque = @import("std").mem.zeroes(?*anyopaque),
+    proxy_ev_settings: ?*anyopaque = @import("std").mem.zeroes(?*anyopaque),
     connect_timeout_ms: u32 = @import("std").mem.zeroes(u32),
-    tcp_keep_alive_options: [*c]c.struct_aws_s3_tcp_keep_alive_options = @import("std").mem.zeroes([*c]c.struct_aws_s3_tcp_keep_alive_options),
-    monitoring_options: ?*c.struct_aws_http_connection_monitoring_options_13 = @import("std").mem.zeroes(?*c.struct_aws_http_connection_monitoring_options_13),
+    tcp_keep_alive_options: [*c]c.aws_s3_tcp_keep_alive_options = @import("std").mem.zeroes([*c]c.aws_s3_tcp_keep_alive_options),
+    monitoring_options: ?*anyopaque = @import("std").mem.zeroes(?*anyopaque),
     enable_read_backpressure: bool = @import("std").mem.zeroes(bool),
     initial_read_window: usize = @import("std").mem.zeroes(usize),
 };
 
 pub extern fn aws_s3_paginator_continue(
-    paginator: ?*c.struct_aws_s3_paginator,
+    paginator: ?*c.aws_s3_paginator,
     signing_config: ?*const SigningConfig,
 ) c_int;
 
 pub extern fn aws_s3_init_default_signing_config(
     signing_config: ?*SigningConfig,
-    region: c.struct_aws_byte_cursor,
-    credentials_provider: [*c]c.struct_aws_credentials_provider,
+    region: c.aws_byte_cursor,
+    credentials_provider: [*c]c.aws_credentials_provider,
 ) void;
 
 pub extern fn aws_s3_client_new(
-    allocator: [*c]c.struct_aws_allocator,
+    allocator: [*c]c.aws_allocator,
     client_config: [*c]const ClientConfig,
-) ?*c.struct_aws_s3_client;
+) ?*c.aws_s3_client;
 
 const Context = extern struct {
     allocator: *c.aws_allocator,
@@ -93,7 +93,7 @@ const Context = extern struct {
     region: [*:0]const u8,
 };
 
-fn sliceToByteCursor(slice: []const u8) c.struct_aws_byte_cursor {
+fn sliceToByteCursor(slice: []const u8) c.aws_byte_cursor {
     return c.aws_byte_cursor_from_array(slice.ptr, slice.len);
 }
 
